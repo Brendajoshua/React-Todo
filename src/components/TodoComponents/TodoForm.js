@@ -13,7 +13,7 @@ class TodoForm extends React.Component{
         this.setState({
             [e.target.name]: e.target.value
         });
-        console.log("handleChange", e.target.name, e.target.value)//logging changes when user is typing in the input field
+        console.log("handleChange", e.target.name, e.target.value)
     }
 
     submitItem = e => {
