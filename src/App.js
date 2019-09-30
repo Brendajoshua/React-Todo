@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import './components/TodoComponents/Todo.css';
 
 const todoData = [
   {
@@ -48,6 +49,10 @@ class App extends React.Component {
     });
   }
 
+  //Update the todo item on our state object
+  //use this.setState
+  //loop through the arr
+  //find which element we clicked update the ""
   addItem = taskName => {
     const newItem = {
       task: taskName,
@@ -69,7 +74,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="header">
-          <h2>Todo List!</h2>
+          <h2>Brenda's Todo App!</h2>
           <TodoForm
           addItem={this.addItem}
           // clearCompleted={this.clearCompleted}
@@ -85,5 +90,4 @@ class App extends React.Component {
     );
   }
 }
-
 export default App;
