@@ -12,7 +12,13 @@ const todoData = [
     task: 'Bake Cookies',
     id: 1528817084358,
     completed: false
+  },
+  {
+    task: 'Work Out',
+    id: 1528817084360,
+    completed: false
   }
+
 ];
 
 class App extends React.Component {
@@ -22,54 +28,59 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos: todoData
-    }
+      todoItem: todoData
+    };
   }
 
-  toggleItem = id => {
+  toggleTask = id => {
+    console.log(id);
     this.setState({
-      todos: this.state.todos.map(item => {
-        if (item.id === id) {
+      todoItem: this.state.todoItem.map(task => {
+        if (task.id === id) {
           return {
-            ...item,
-            completed: !item.completed
+            ...task,
+            completed: !task.completed
           };
-        }else {
-          return item;
+        } else {
+          return task;
         }
       })
-    })
+    });
   }
 
-  addTask = taskName => {
-    const newTask ={
+  addItem = taskName => {
+    const newItem = {
       task: taskName,
       id: Date.now(),
       completed: false
     };
     this.setState({
-      todos: [...this.state.todos, newTask]
-    });
+      todoItem: [...this.state.todoItem, newItem]
+    })
   }
 
   clearCompleted = () => {
     this.setState({
-      todos: this.state.todos.filter(item => !item.completed)
+      todoItem: this.state.todoItem.filter(task => !task.completed)
     })
   }
 
   render() {
     return (
       <div className="App">
-        <h2>Welcome to your Todo App!</h2>
+        <div className="header">
+          <h2>Todo List!</h2>
+          <TodoForm
+          addItem={this.addItem}
+          // clearCompleted={this.clearCompleted}
+        />
+        </div>
         <TodoList
-        todos={this.state.todos}
-        toggleItem={this.toggleItem}
+          todoItem={this.state.todoItem}
+          toggleTask={this.toggleTask}
+          clearCompleted={this.clearCompleted}
         />
-        <TodoForm
-        addTask={this.addTask}
-        clearCompleted={this.clearCompleted}
-        />
+        <button class="clear-btn" onClick={this.clearCompleted}>Clear Completed</button>
       </div>
     );
   }
